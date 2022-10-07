@@ -31,9 +31,34 @@
                     <li>
                         @Html.ActionLink(" ", "Index", "Home", new { area = "" }, new { @class = "glyphicon glyphicon-shopping-cart" })
                     </li>
-                    <li>
-                        @Html.ActionLink("Sign In", "SignIn", "Users")
-                    </li>
+                    @{
+
+                        if (string.IsNullOrEmpty(Convert.ToString(Session["Username"])))
+                        {
+                            <li>
+                                @Html.ActionLink("Sign In", "SignIn", "Users")
+                            </li>
+                        }
+                        else
+                        {
+                            <li role="presentation" class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                    @Session["Username"]<span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        @Html.ActionLink("Profile", "Profile", "Users")
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("My Orders", "Index", "Purchases")
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Logout", "Logout", "Users")
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                    }
                 </ul>
             </div>
         </div>

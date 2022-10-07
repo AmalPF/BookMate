@@ -54,6 +54,14 @@ namespace BookMate.Controllers
         }
 
         // ------------------- User Sign Up Page -------------------
+        public ActionResult Logout()
+        {
+            Session["UserId"] = null;
+            Session["Username"] = null;
+            return RedirectToAction("Index", "Home");
+        }
+
+        // ------------------- User Sign Up Page -------------------
         public ActionResult SignUp()
         {
             return View();
@@ -70,8 +78,6 @@ namespace BookMate.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-
 
             return View(users);
         }

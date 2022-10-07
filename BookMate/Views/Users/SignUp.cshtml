@@ -16,10 +16,9 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-
             <div class="col-md-10">
                 <label>User Name</label>
-                @Html.EditorFor(model => model.UUserName, new { htmlAttributes = new { @class = "form-control", type = "text" } })
+                @Html.EditorFor(model => model.UUserName, new { htmlAttributes = new { @class = "form-control", placeholder = "username" } })
                 @Html.ValidationMessageFor(model => model.UUserName, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -28,16 +27,25 @@
 
             <div class="col-md-10">
                 <label>Password</label>
-                @Html.EditorFor(model => model.UPassword, new { htmlAttributes = new { @class = "form-control", type = "password" } })
+                @Html.EditorFor(model => model.UPassword, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.UPassword, "", new { @class = "text-danger" })
             </div>
         </div>
+
+        @*<div class="form-group">
+
+            <div class="col-md-10">
+                <label>Password</label>
+                @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
 
         <div class="form-group">
 
             <div class="col-md-10">
                 <label>First Name</label>
-                @Html.EditorFor(model => model.UFName, new { htmlAttributes = new { @class = "form-control", type = "text" } })
+                @Html.EditorFor(model => model.UFName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.UFName, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -46,7 +54,7 @@
 
             <div class="col-md-10">
                 <label>Last Name</label>
-                @Html.EditorFor(model => model.ULName, new { htmlAttributes = new { @class = "form-control", type = "text" } })
+                @Html.EditorFor(model => model.ULName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ULName, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -55,7 +63,7 @@
 
             <div class="col-md-10">
                 <label>Date Of Birth</label>
-                @Html.EditorFor(model => model.UDOB, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                @Html.EditorFor(model => model.UDOB, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.UDOB, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -64,7 +72,7 @@
 
             <div class="col-md-10">
                 <label>Email</label>
-                @Html.EditorFor(model => model.UEmail, new { htmlAttributes = new { @class = "form-control", type = "email" } })
+                @Html.EditorFor(model => model.UEmail, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.UEmail, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -73,7 +81,7 @@
 
             <div class="col-md-10">
                 <label>Phone Number</label>
-                @Html.EditorFor(model => model.UPhone, new { htmlAttributes = new { @class = "form-control", type = "tel" } })
+                @Html.EditorFor(model => model.UPhone, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.UPhone, "", new { @class = "text-danger" })
             </div>
         </div>

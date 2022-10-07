@@ -14,8 +14,25 @@ namespace BookMate.Controllers
     {
         private BookMateDBEntities db = new BookMateDBEntities();
 
-        // GET: Purchases
+        //****************************************************************************************
+
         public ActionResult Index()
+        {
+            Users user = db.Users.Find(Convert.ToInt32(Session["UserId"].ToString()));
+
+            List<Address> addressList = db.Address.Where(x => x.UId == user.UId).ToList();
+            List<Purchase> purchaseList = new List<Purchase>();
+            foreach (Address a in addressList)
+            {
+                purchaseList.AddRange(db.Purchase.Where(x => x.AId == a.AId).ToList());
+            }
+            return View(purchaseList);
+        }
+
+        //****************************************************************************************
+
+        // GET: Purchases
+        public ActionResult AllPurchases()
         {
             var purchase = db.Purchase.Include(p => p.Address).Include(p => p.Books);
             return View(purchase.ToList());

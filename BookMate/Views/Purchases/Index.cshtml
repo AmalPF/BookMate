@@ -1,57 +1,54 @@
 ﻿@model IEnumerable<BookMate.Models.Purchase>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "My Orders";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.PDateTime)
+            Date and Time
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PQuantity)
+            Book Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PAmount)
+            Address
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Address.AAddressL1)
+            Quantity
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Books.BName)
+            Amount
         </th>
-        <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.PDateTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PQuantity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PAmount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address.AAddressL1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Books.BName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Books.BName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address.AAddressL1)<br />
+                @Html.DisplayFor(modelItem => item.Address.AAddressL2)<br />
+                @Html.DisplayFor(modelItem => item.Address.ACity),
+                @Html.DisplayFor(modelItem => item.Address.ADistrict),
+                @Html.DisplayFor(modelItem => item.Address.AState)<br />
+                PIN-@Html.DisplayFor(modelItem => item.Address.APIN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PQuantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PAmount)
+            </td>
+        </tr>
+    }
 
 </table>

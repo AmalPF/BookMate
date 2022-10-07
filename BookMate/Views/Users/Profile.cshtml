@@ -7,51 +7,31 @@
 <h2>Profile</h2>
 
 <div>
-    <h4>Users</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.UUserName)
+            Username
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.UUserName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.UPassword)
+            Full Name
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.UPassword)
+            @Html.DisplayFor(model => model.UFName) @Html.DisplayFor(model => model.ULName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.UFName)
+            Date of Birth
         </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UFName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ULName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ULName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UDOB)
-        </dt>
-
         <dd>
             @Html.DisplayFor(model => model.UDOB)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.UEmail)
+            E-mail
         </dt>
 
         <dd>
@@ -59,7 +39,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.UPhone)
+            Phone Number
         </dt>
 
         <dd>
@@ -70,5 +50,5 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.UId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Home", "Index", "Home")
 </p>
