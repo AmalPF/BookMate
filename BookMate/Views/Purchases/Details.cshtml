@@ -1,0 +1,58 @@
+﻿@model BookMate.Models.Purchase
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Purchase</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PQuantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PQuantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address.AAddressL1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address.AAddressL1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Books.BName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Books.BName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
