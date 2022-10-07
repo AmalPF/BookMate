@@ -1,0 +1,98 @@
+﻿@model BookMate.Models.Books
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Books</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BAuthor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BAuthor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BPublisher)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BPublisher)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BYearOfPublication)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BYearOfPublication)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BQuantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BQuantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BNPurchases)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BNPurchases)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BRating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BRating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.CCategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.CCategoryName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

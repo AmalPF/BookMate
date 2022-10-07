@@ -1,0 +1,2 @@
+# **BookMate**
+A web application that facilitates easy sale, purchase, and exchange of books online. Such a website brings with it numerous benefits as it caters to people who enjoy reading as a hobby or those who wish to start reading as a habit, this application would be extremely helpful. Customers can visit the website from the comfort of their homes and shop as they sit in front of the computer, whilst practically having an infinite number of titles to choose from. 

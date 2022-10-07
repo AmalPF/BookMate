@@ -1,0 +1,80 @@
+﻿@model BookMate.Models.Users
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Users</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UUserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UUserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UPassword)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UPassword)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UFName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UFName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ULName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ULName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UDOB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UDOB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UPhone)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,74 @@
+﻿@model BookMate.Models.Users
+
+@{
+    ViewBag.Title = "Profile";
+}
+
+<h2>Profile</h2>
+
+<div>
+    <h4>Users</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UUserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UUserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UPassword)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UPassword)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UFName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UFName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ULName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ULName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UDOB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UDOB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UPhone)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.UId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

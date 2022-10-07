@@ -1,0 +1,87 @@
+﻿@model IEnumerable<BookMate.Models.Books>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BAuthor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BPublisher)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BYearOfPublication)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BImage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BQuantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BNPurchases)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BRating)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.CCategoryName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BAuthor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BPublisher)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BYearOfPublication)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BImage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BQuantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BNPurchases)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BRating)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category.CCategoryName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.BId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.BId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.BId })
+        </td>
+    </tr>
+}
+
+</table>

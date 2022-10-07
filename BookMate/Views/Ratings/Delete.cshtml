@@ -1,0 +1,56 @@
+﻿@model BookMate.Models.Rating
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Rating</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RRating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RRating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RComments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RComments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Books.BName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Books.BName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Users.UUserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Users.UUserName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
