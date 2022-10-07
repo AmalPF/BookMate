@@ -136,6 +136,7 @@
     <Compile Include="Controllers\PurchasesController.cs" />
     <Compile Include="Controllers\RatingsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Filters\AdminAuth.cs" />
     <Compile Include="Filters\UserAuth.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -256,8 +257,8 @@
     <Content Include="Views\Books\Delete.cshtml" />
     <Content Include="Views\Books\Details.cshtml" />
     <Content Include="Views\Books\Edit.cshtml" />
+    <Content Include="Views\Books\Booklist.cshtml" />
     <Content Include="Views\Books\Index.cshtml" />
-    <Content Include="Views\Books\AllBooks.cshtml" />
     <Content Include="Views\Admins\Create.cshtml" />
     <Content Include="Views\Admins\Delete.cshtml" />
     <Content Include="Views\Admins\Details.cshtml" />
@@ -273,6 +274,9 @@
     <Content Include="Views\Purchases\Details.cshtml" />
     <Content Include="Views\Purchases\Edit.cshtml" />
     <Content Include="Views\Purchases\Index.cshtml" />
+    <Content Include="Views\Shared\Admin Error.cshtml" />
+    <Content Include="Views\Shared\User Error.cshtml" />
+    <Content Include="Views\Admins\SignIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

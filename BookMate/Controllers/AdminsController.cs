@@ -14,6 +14,46 @@ namespace BookMate.Controllers
     {
         private BookMateDBEntities db = new BookMateDBEntities();
 
+
+
+        //**************************************************
+
+        public ActionResult SignIn()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SignIn([Bind(Include = "AUsername,APassword")] Admin admin)
+        {
+            if (ModelState.IsValid)
+            {
+
+                var query = from a in db.Admin
+                            where a.AUserName.Contains(admin.AUserName)
+                            select a;
+                Admin temp = query.FirstOrDefault();
+                if (temp == null)
+                {
+                    ModelState.AddModelError("", "Login Failed! No such user exists!!!");
+                }
+                else if (temp.AUserName == admin.AUserName && temp.APassword == admin.APassword)
+                {
+                    Session["AdminName"] = temp.AUserName;
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Admin Login Failed! Incorrect Password!!!");
+                }
+            }
+
+            return View(admin);
+        }
+
+        //********************************************************
+
         // GET: Admins
         public ActionResult Index()
         {

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using BookMate.Filters;
 using BookMate.Models;
 
 namespace BookMate.Controllers
@@ -78,6 +79,7 @@ namespace BookMate.Controllers
         // ------------------- User Profile Page -------------------
 
         // GET: Users/Profile/5
+        [UserAuth]
         public ActionResult Profile()
         {
             if (string.IsNullOrEmpty(Session["UserId"].ToString()))

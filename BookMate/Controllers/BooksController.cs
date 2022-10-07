@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using BookMate.Filters;
 using BookMate.Models;
 
 namespace BookMate.Controllers
@@ -16,7 +17,7 @@ namespace BookMate.Controllers
 
         //*******************************************************************************************************************************
 
-        public ActionResult AllBooks()
+        public ActionResult Index()
         {
             var books = db.Books.Include(b => b.Category);
             return View(books.ToList());
@@ -26,7 +27,7 @@ namespace BookMate.Controllers
 
 
         // GET: Books
-        public ActionResult Index()
+        public ActionResult Booklist()
         {
             var books = db.Books.Include(b => b.Category);
             return View(books.ToList());
@@ -48,6 +49,7 @@ namespace BookMate.Controllers
         }
 
         // GET: Books/Create
+        [AdminAuth]
         public ActionResult Create()
         {
             ViewBag.BCategory = new SelectList(db.Category, "CCategoryName", "CCategoryName");
