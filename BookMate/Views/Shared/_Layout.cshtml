@@ -51,7 +51,7 @@
                         {
                             <li role="presentation" class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                    @Session["AdminName"]
+                                    @Session["AdminName"]<span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
@@ -63,13 +63,16 @@
                         else if (!string.IsNullOrEmpty(Convert.ToString(Session["Username"])))
                         {
                             <li>
-                                @Html.ActionLink(" ", "Index", "Home", new { area = "" }, new { @class = "glyphicon glyphicon-shopping-cart" })
+                                @Html.ActionLink(" ", "Index", "Carts", new { area = "" }, new { @class = "glyphicon glyphicon-shopping-cart" })
                             </li>
                             <li role="presentation" class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                     @Session["Username"]<span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
+                                    <li>
+                                        @Html.ActionLink("Profile", "Profile", "Users")
+                                    </li>
                                     <li>
                                         @Html.ActionLink("Cart", "Index", "Carts")
                                     </li>

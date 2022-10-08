@@ -15,7 +15,6 @@ namespace BookMate.Controllers
         private BookMateDBEntities db = new BookMateDBEntities();
 
 
-
         //**************************************************
 
         public ActionResult Index()

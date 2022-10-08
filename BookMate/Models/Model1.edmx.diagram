@@ -4,23 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="28f1e8c98be84637ac2d0dd3ce4d4af6" Name="Diagram1">
-        <EntityTypeShape EntityType="BookMateDBModel.Address" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookMateDBModel.Admin" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookMateDBModel.Books" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookMateDBModel.Cart" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookMateDBModel.Category" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookMateDBModel.Purchase" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookMateDBModel.Rating" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookMateDBModel.Users" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
+      <Diagram DiagramId="ce07b77f6ca34b9a842955b424d24ed4" Name="Diagram1">
+        <EntityTypeShape EntityType="BookMateDBModel.Address" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookMateDBModel.Admin" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookMateDBModel.Books" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookMateDBModel.Cart" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookMateDBModel.Category" Width="1.5" PointX="1.5" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookMateDBModel.Purchase" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookMateDBModel.Rating" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookMateDBModel.Users" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
         <AssociationConnector Association="BookMateDBModel.FK__Address__UId__2C3393D0" ManuallyRouted="false" />
         <AssociationConnector Association="BookMateDBModel.FK__Purchase__AId__403A8C7D" ManuallyRouted="false" />
         <AssociationConnector Association="BookMateDBModel.FK__Books__BCategory__35BCFE0A" ManuallyRouted="false" />
         <AssociationConnector Association="BookMateDBModel.FK__Cart__BId__44FF419A" ManuallyRouted="false" />
         <AssociationConnector Association="BookMateDBModel.FK__Purchase__BId__3F466844" ManuallyRouted="false" />
-        <AssociationConnector Association="BookMateDBModel.FK__Rating__BId__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="BookMateDBModel.FK__Rating__BId__49C3F6B7" ManuallyRouted="false" />
         <AssociationConnector Association="BookMateDBModel.FK__Cart__UId__440B1D61" ManuallyRouted="false" />
-        <AssociationConnector Association="BookMateDBModel.FK__Rating__UId__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="BookMateDBModel.FK__Purchase__UId__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="BookMateDBModel.FK__Rating__UId__4AB81AF0" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -11,9 +11,7 @@ namespace BookMate.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-
+    
     public partial class Users
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,26 +19,25 @@ namespace BookMate.Models
         {
             this.Address = new HashSet<Address>();
             this.Cart = new HashSet<Cart>();
+            this.Purchase = new HashSet<Purchase>();
             this.Rating = new HashSet<Rating>();
         }
-
+    
         public int UId { get; set; }
         public string UUserName { get; set; }
-
-        [DataType(DataType.Password)]
         public string UPassword { get; set; }
         public string UFName { get; set; }
         public string ULName { get; set; }
-
-        [DataType(DataType.Date)]
         public System.DateTime UDOB { get; set; }
         public string UEmail { get; set; }
         public string UPhone { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Address> Address { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cart> Cart { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Purchase> Purchase { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rating> Rating { get; set; }
     }

@@ -20,8 +20,10 @@ namespace BookMate.Models
         public System.DateTime PDateTime { get; set; }
         public int PQuantity { get; set; }
         public double PAmount { get; set; }
+        public Nullable<int> UId { get; set; }
     
         public virtual Address Address { get; set; }
         public virtual Books Books { get; set; }
+        public virtual Users Users { get; set; }
     }
 }

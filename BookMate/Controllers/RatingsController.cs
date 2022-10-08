@@ -10,13 +10,39 @@ using BookMate.Models;
 
 namespace BookMate.Controllers
 {
-
-
-    //*******************************************************************************************************************************
-
     public class RatingsController : Controller
     {
         private BookMateDBEntities db = new BookMateDBEntities();
+
+
+        //*******************************************************************************************************************************
+
+        public ActionResult AddRating()
+        {
+            Books book = db.Books.Find(Convert.ToInt32(Session["BookId"].ToString()));
+            ViewBag.BookName = book.BName;
+            ViewBag.UserName = Session["Username"];
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddRating([Bind(Include = "RRating,RComments")] Rating rating)
+        {
+            if (ModelState.IsValid)
+            {
+                rating.UId = Convert.ToInt32(Session["UserId"].ToString());
+                rating.BId = Convert.ToInt32(Session["BookId"].ToString());
+                db.Rating.Add(rating);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Purchases");
+            }
+
+            return View(rating);
+        }
+
+        //*******************************************************************************************************************************
+
 
         // GET: Ratings
         public ActionResult Index()

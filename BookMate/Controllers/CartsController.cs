@@ -14,12 +14,25 @@ namespace BookMate.Controllers
     {
         private BookMateDBEntities db = new BookMateDBEntities();
 
-        // GET: Carts
+
+        //**************************************************
+
         public ActionResult Index()
         {
-            var cart = db.Cart.Include(c => c.Books).Include(c => c.Users);
-            return View(cart.ToList());
+            Users user = db.Users.Find(Convert.ToInt32(Session["UserId"].ToString()));
+            List<Cart> CartList = new List<Cart>();
+            CartList.AddRange(db.Cart.Where(x => x.UId == user.UId).ToList());
+            return View(CartList);
         }
+
+        public ActionResult BuyNow(int? id)
+        {
+            return RedirectToAction("ConfirmOrder", "Purchases", new { cid=id });
+        }
+
+        //**************************************************
+
+
 
         // GET: Carts/Details/5
         public ActionResult Details(int? id)

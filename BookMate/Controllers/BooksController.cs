@@ -29,6 +29,23 @@ namespace BookMate.Controllers
             return View(books.ToList());
         }
 
+        [UserAuth]
+        public ActionResult AddToCart(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Users user = db.Users.Find(Convert.ToInt32(Session["UserId"].ToString()));
+            Books book = db.Books.Find(id);
+            Cart newItem = new Cart { UId = user.UId, BId = id };
+
+            db.Cart.Add(newItem);
+            db.SaveChanges();
+            //Response.Write("<script> alert('" + book.BName + " Added to Cart')</script>");
+            return RedirectToAction("Index", "Carts");
+        }
+
         //*******************************************************************************************************************************
 
 

@@ -26,26 +26,27 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.RRating)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RComments)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Books.BName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Users.UUserName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.RId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.RId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.RId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RRating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RComments)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Books.BName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Users.UUserName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { uid = item.UId, bid = item.BId }) |
+                @Html.ActionLink("Details", "Details", new { uid = item.UId, bid = item.BId }) |
+                @Html.ActionLink("Delete", "Delete", new { uid = item.UId, bid = item.BId })
+            </td>
+        </tr>
+    }
 
 </table>

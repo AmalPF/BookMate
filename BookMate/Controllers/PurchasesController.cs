@@ -30,6 +30,47 @@ namespace BookMate.Controllers
             return View(purchaseList);
         }
 
+        public ActionResult AddRating(int? id)
+        {
+            Session["BookId"] = id;
+            return RedirectToAction("AddRating", "Ratings");
+        }
+
+        public ActionResult ConfirmOrder(int? cid)
+        {
+            if (cid == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Cart cartItem = db.Cart.Find(cid);
+            if (cartItem == null)
+            {
+                return HttpNotFound();
+            }
+            Purchase item = new Purchase { UId = cartItem.UId, BId = cartItem.BId, PAmount = cartItem.Books.BPrice, PQuantity = 1 };
+            ViewBag.BookName = cartItem.Books.BName;
+            ViewBag.Price = cartItem.Books.BPrice;
+            ViewBag.AId = new SelectList(db.Address.Where(x => x.UId == cartItem.UId), "AId", "AAddressL1");
+            return View(item);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ConfirmOrder([Bind(Include = "PId,UId,BId,AId,PDateTime,PQuantity,PAmount")] Purchase purchase)
+        {
+            if (ModelState.IsValid)
+            {
+                purchase.PDateTime = DateTime.Now; 
+                db.Purchase.Add(purchase);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.BookName = purchase.Books.BName;
+            ViewBag.Price = purchase.Books.BPrice;
+            ViewBag.AId = new SelectList(db.Address.Where(x => x.UId == purchase.UId), "AId", "AAddressL1");
+            return View(purchase);
+        }
+
         //****************************************************************************************
 
         // GET: Purchases

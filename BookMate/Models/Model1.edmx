@@ -69,14 +69,15 @@
           <Property Name="PDateTime" Type="datetime" Nullable="false" />
           <Property Name="PQuantity" Type="int" Nullable="false" />
           <Property Name="PAmount" Type="float" Nullable="false" />
+          <Property Name="UId" Type="int" />
         </EntityType>
         <EntityType Name="Rating">
           <Key>
-            <PropertyRef Name="RId" />
+            <PropertyRef Name="BId" />
+            <PropertyRef Name="UId" />
           </Key>
-          <Property Name="RId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BId" Type="int" />
-          <Property Name="UId" Type="int" />
+          <Property Name="BId" Type="int" Nullable="false" />
+          <Property Name="UId" Type="int" Nullable="false" />
           <Property Name="RRating" Type="float" Nullable="false" />
           <Property Name="RComments" Type="nvarchar" MaxLength="500" />
         </EntityType>
@@ -171,8 +172,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Rating__BId__3A81B327">
-          <End Role="Books" Type="Self.Books" Multiplicity="0..1">
+        <Association Name="FK__Purchase__UId__4E88ABD4">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Purchase" Type="Self.Purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UId" />
+            </Principal>
+            <Dependent Role="Purchase">
+              <PropertyRef Name="UId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rating__BId__49C3F6B7">
+          <End Role="Books" Type="Self.Books" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
@@ -185,8 +198,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Rating__UId__3B75D760">
-          <End Role="Users" Type="Self.Users" Multiplicity="0..1">
+        <Association Name="FK__Rating__UId__4AB81AF0">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
@@ -232,11 +245,15 @@
             <End Role="Books" EntitySet="Books" />
             <End Role="Purchase" EntitySet="Purchase" />
           </AssociationSet>
-          <AssociationSet Name="FK__Rating__BId__3A81B327" Association="Self.FK__Rating__BId__3A81B327">
+          <AssociationSet Name="FK__Purchase__UId__4E88ABD4" Association="Self.FK__Purchase__UId__4E88ABD4">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Purchase" EntitySet="Purchase" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rating__BId__49C3F6B7" Association="Self.FK__Rating__BId__49C3F6B7">
             <End Role="Books" EntitySet="Books" />
             <End Role="Rating" EntitySet="Rating" />
           </AssociationSet>
-          <AssociationSet Name="FK__Rating__UId__3B75D760" Association="Self.FK__Rating__UId__3B75D760">
+          <AssociationSet Name="FK__Rating__UId__4AB81AF0" Association="Self.FK__Rating__UId__4AB81AF0">
             <End Role="Users" EntitySet="Users" />
             <End Role="Rating" EntitySet="Rating" />
           </AssociationSet>
@@ -290,7 +307,7 @@
           <NavigationProperty Name="Category" Relationship="Self.FK__Books__BCategory__35BCFE0A" FromRole="Books" ToRole="Category" />
           <NavigationProperty Name="Cart" Relationship="Self.FK__Cart__BId__44FF419A" FromRole="Books" ToRole="Cart" />
           <NavigationProperty Name="Purchase" Relationship="Self.FK__Purchase__BId__3F466844" FromRole="Books" ToRole="Purchase" />
-          <NavigationProperty Name="Rating" Relationship="Self.FK__Rating__BId__3A81B327" FromRole="Books" ToRole="Rating" />
+          <NavigationProperty Name="Rating" Relationship="Self.FK__Rating__BId__49C3F6B7" FromRole="Books" ToRole="Rating" />
         </EntityType>
         <EntityType Name="Cart">
           <Key>
@@ -319,20 +336,22 @@
           <Property Name="PDateTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="PQuantity" Type="Int32" Nullable="false" />
           <Property Name="PAmount" Type="Double" Nullable="false" />
+          <Property Name="UId" Type="Int32" />
           <NavigationProperty Name="Address" Relationship="Self.FK__Purchase__AId__403A8C7D" FromRole="Purchase" ToRole="Address" />
           <NavigationProperty Name="Books" Relationship="Self.FK__Purchase__BId__3F466844" FromRole="Purchase" ToRole="Books" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Purchase__UId__4E88ABD4" FromRole="Purchase" ToRole="Users" />
         </EntityType>
         <EntityType Name="Rating">
           <Key>
-            <PropertyRef Name="RId" />
+            <PropertyRef Name="BId" />
+            <PropertyRef Name="UId" />
           </Key>
-          <Property Name="RId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BId" Type="Int32" />
-          <Property Name="UId" Type="Int32" />
+          <Property Name="BId" Type="Int32" Nullable="false" />
+          <Property Name="UId" Type="Int32" Nullable="false" />
           <Property Name="RRating" Type="Double" Nullable="false" />
           <Property Name="RComments" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Books" Relationship="Self.FK__Rating__BId__3A81B327" FromRole="Rating" ToRole="Books" />
-          <NavigationProperty Name="Users" Relationship="Self.FK__Rating__UId__3B75D760" FromRole="Rating" ToRole="Users" />
+          <NavigationProperty Name="Books" Relationship="Self.FK__Rating__BId__49C3F6B7" FromRole="Rating" ToRole="Books" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Rating__UId__4AB81AF0" FromRole="Rating" ToRole="Users" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -348,7 +367,8 @@
           <Property Name="UPhone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Address" Relationship="Self.FK__Address__UId__2C3393D0" FromRole="Users" ToRole="Address" />
           <NavigationProperty Name="Cart" Relationship="Self.FK__Cart__UId__440B1D61" FromRole="Users" ToRole="Cart" />
-          <NavigationProperty Name="Rating" Relationship="Self.FK__Rating__UId__3B75D760" FromRole="Users" ToRole="Rating" />
+          <NavigationProperty Name="Purchase" Relationship="Self.FK__Purchase__UId__4E88ABD4" FromRole="Users" ToRole="Purchase" />
+          <NavigationProperty Name="Rating" Relationship="Self.FK__Rating__UId__4AB81AF0" FromRole="Users" ToRole="Rating" />
         </EntityType>
         <Association Name="FK__Address__UId__2C3393D0">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1">
@@ -414,8 +434,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Rating__BId__3A81B327">
-          <End Role="Books" Type="Self.Books" Multiplicity="0..1">
+        <Association Name="FK__Rating__BId__49C3F6B7">
+          <End Role="Books" Type="Self.Books" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
@@ -442,8 +462,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Rating__UId__3B75D760">
-          <End Role="Users" Type="Self.Users" Multiplicity="0..1">
+        <Association Name="FK__Purchase__UId__4E88ABD4">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Purchase" Type="Self.Purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UId" />
+            </Principal>
+            <Dependent Role="Purchase">
+              <PropertyRef Name="UId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rating__UId__4AB81AF0">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
@@ -485,7 +517,7 @@
             <End Role="Books" EntitySet="Books" />
             <End Role="Purchase" EntitySet="Purchase" />
           </AssociationSet>
-          <AssociationSet Name="FK__Rating__BId__3A81B327" Association="Self.FK__Rating__BId__3A81B327">
+          <AssociationSet Name="FK__Rating__BId__49C3F6B7" Association="Self.FK__Rating__BId__49C3F6B7">
             <End Role="Books" EntitySet="Books" />
             <End Role="Rating" EntitySet="Rating" />
           </AssociationSet>
@@ -493,7 +525,11 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Cart" EntitySet="Cart" />
           </AssociationSet>
-          <AssociationSet Name="FK__Rating__UId__3B75D760" Association="Self.FK__Rating__UId__3B75D760">
+          <AssociationSet Name="FK__Purchase__UId__4E88ABD4" Association="Self.FK__Purchase__UId__4E88ABD4">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Purchase" EntitySet="Purchase" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rating__UId__4AB81AF0" Association="Self.FK__Rating__UId__4AB81AF0">
             <End Role="Users" EntitySet="Users" />
             <End Role="Rating" EntitySet="Rating" />
           </AssociationSet>
@@ -572,13 +608,13 @@
                 <ScalarProperty Name="PDateTime" ColumnName="PDateTime" />
                 <ScalarProperty Name="PQuantity" ColumnName="PQuantity" />
                 <ScalarProperty Name="PAmount" ColumnName="PAmount" />
+                <ScalarProperty Name="UId" ColumnName="UId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Rating">
             <EntityTypeMapping TypeName="BookMateDBModel.Rating">
               <MappingFragment StoreEntitySet="Rating">
-                <ScalarProperty Name="RId" ColumnName="RId" />
                 <ScalarProperty Name="BId" ColumnName="BId" />
                 <ScalarProperty Name="UId" ColumnName="UId" />
                 <ScalarProperty Name="RRating" ColumnName="RRating" />

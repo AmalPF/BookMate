@@ -1,21 +1,18 @@
 ﻿@model IEnumerable<BookMate.Models.Cart>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "My Cart";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Books.BName)
+            Book Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Users.UUserName)
+            Price
         </th>
         <th></th>
     </tr>
@@ -26,12 +23,13 @@
             @Html.DisplayFor(modelItem => item.Books.BName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Users.UUserName)
+            @Html.DisplayFor(modelItem => item.Books.BPrice)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CId })
+            @Html.ActionLink("Remove", "Delete", new { id = item.CId })
+        </td>
+        <td>
+            @Html.ActionLink("Buy Now", "BuyNow", new { id = item.CId })
         </td>
     </tr>
 }

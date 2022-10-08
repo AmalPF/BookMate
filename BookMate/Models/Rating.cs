@@ -14,9 +14,8 @@ namespace BookMate.Models
     
     public partial class Rating
     {
-        public int RId { get; set; }
-        public Nullable<int> BId { get; set; }
-        public Nullable<int> UId { get; set; }
+        public int BId { get; set; }
+        public int UId { get; set; }
         public double RRating { get; set; }
         public string RComments { get; set; }
     
