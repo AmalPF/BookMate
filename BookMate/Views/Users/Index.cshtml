@@ -1,38 +1,28 @@
 ﻿@model IEnumerable<BookMate.Models.Users>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Users List";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.UUserName)
+            Username
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UPassword)
+            Full Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UFName)
+            Date of Birth
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ULName)
+            E-mail
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UDOB)
+            Phone Number
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UEmail)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UPhone)
-        </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -41,13 +31,7 @@
             @Html.DisplayFor(modelItem => item.UUserName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UPassword)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UFName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ULName)
+            @Html.DisplayFor(modelItem => item.UFName) @Html.DisplayFor(modelItem => item.ULName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.UDOB)
@@ -59,7 +43,6 @@
             @Html.DisplayFor(modelItem => item.UPhone)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.UId }) |
             @Html.ActionLink("Details", "Details", new { id=item.UId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.UId })
         </td>

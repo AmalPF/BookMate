@@ -29,7 +29,6 @@ namespace BookMate.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 var query = from u in db.Users
                             where u.UUserName.Contains(user.UUserName)
                             select u;
@@ -42,6 +41,7 @@ namespace BookMate.Controllers
                 {
                     Session["Username"] = temp.UUserName;
                     Session["UserId"] = temp.UId;
+                    Session["AdminName"] = null;
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -49,11 +49,10 @@ namespace BookMate.Controllers
                     ModelState.AddModelError("", "Login Failed! Incorrect Password!!!");
                 }
             }
-
             return View(user);
         }
 
-        // ------------------- User Sign Up Page -------------------
+        // ------------------- User Logout Page -------------------
         public ActionResult Logout()
         {
             Session["UserId"] = null;

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using BookMate.Filters;
 using BookMate.Models;
 
 namespace BookMate.Controllers
@@ -15,7 +16,7 @@ namespace BookMate.Controllers
         private BookMateDBEntities db = new BookMateDBEntities();
 
         //****************************************************************************************
-
+        [UserAuth]
         public ActionResult Index()
         {
             Users user = db.Users.Find(Convert.ToInt32(Session["UserId"].ToString()));

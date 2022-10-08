@@ -22,32 +22,56 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Books", "Index", "Books")</li>
-                    <li>@Html.ActionLink("Categories", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        @Html.ActionLink(" ", "Index", "Home", new { area = "" }, new { @class = "glyphicon glyphicon-shopping-cart" })
-                    </li>
                     @{
-
-                        if (string.IsNullOrEmpty(Convert.ToString(Session["Username"])))
+                        if (!(string.IsNullOrEmpty(Convert.ToString(Session["AdminName"]))))
                         {
-                            <li>
-                                @Html.ActionLink("Sign In", "SignIn", "Users")
-                            </li>
+                            <li>@Html.ActionLink("View Users", "Index", "Users")</li>
+                            <li>@Html.ActionLink("View Books", "BookList", "Books")</li>
+                            <li>@Html.ActionLink("Add Book", "Create", "Books")</li>
+                            <li>@Html.ActionLink("View Orders ", "AllPurchases", "Purchases")</li>
+                        }
+                        else if (!string.IsNullOrEmpty(Convert.ToString(Session["Username"])))
+                        {
+                            <li>@Html.ActionLink("Books", "Index", "Books")</li>
+                            <li>@Html.ActionLink("Categories", "Index", "Home")</li>
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                         }
                         else
                         {
+                            <li>@Html.ActionLink("Books", "Index", "Books")</li>
+                            <li>@Html.ActionLink("Categories", "Index", "Home")</li>
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                        }
+                    }
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @{
+                        if (!(string.IsNullOrEmpty(Convert.ToString(Session["AdminName"]))))
+                        {
+                            <li role="presentation" class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                    @Session["AdminName"]
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        @Html.ActionLink("Logout", "Logout", "Admins")
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        else if (!string.IsNullOrEmpty(Convert.ToString(Session["Username"])))
+                        {
+                            <li>
+                                @Html.ActionLink(" ", "Index", "Home", new { area = "" }, new { @class = "glyphicon glyphicon-shopping-cart" })
+                            </li>
                             <li role="presentation" class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                     @Session["Username"]<span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        @Html.ActionLink("Profile", "Profile", "Users")
+                                        @Html.ActionLink("Cart", "Index", "Carts")
                                     </li>
                                     <li>
                                         @Html.ActionLink("My Orders", "Index", "Purchases")
@@ -56,6 +80,12 @@
                                         @Html.ActionLink("Logout", "Logout", "Users")
                                     </li>
                                 </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                @Html.ActionLink("Sign In", "SignIn", "Users")
                             </li>
                         }
                     }

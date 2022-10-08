@@ -23,15 +23,14 @@ namespace BookMate.Controllers
             return View(books.ToList());
         }
 
-        //*******************************************************************************************************************************
-
-
-        // GET: Books
-        public ActionResult Booklist()
+        public ActionResult BookList()
         {
             var books = db.Books.Include(b => b.Category);
             return View(books.ToList());
         }
+
+        //*******************************************************************************************************************************
+
 
         // GET: Books/Details/5
         public ActionResult Details(int? id)

@@ -1,47 +1,43 @@
 ﻿@model IEnumerable<BookMate.Models.Books>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Book List";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.BName)
+            Book Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BAuthor)
+            Author
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BPublisher)
+            Publisher
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BYearOfPublication)
+            Published Year
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BImage)
+            Category
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BPrice)
+            Image
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BQuantity)
+            Price
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BNPurchases)
+            Stock
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BRating)
+            Purchases
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Category.CCategoryName)
+            Rating
         </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -59,6 +55,9 @@
             @Html.DisplayFor(modelItem => item.BYearOfPublication)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Category.CCategoryName)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.BImage)
         </td>
         <td>
@@ -74,12 +73,9 @@
             @Html.DisplayFor(modelItem => item.BRating)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Category.CCategoryName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.BId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.BId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.BId })
+            @Html.ActionLink("Edit", "Edit", new { id = item.BId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.BId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.BId })
         </td>
     </tr>
 }

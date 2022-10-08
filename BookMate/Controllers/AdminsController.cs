@@ -18,6 +18,12 @@ namespace BookMate.Controllers
 
         //**************************************************
 
+        public ActionResult Index()
+        {
+            return RedirectToAction("SignIn", "Admins");
+        }
+
+        // ------------------- Admin SignIn Page -------------------
         public ActionResult SignIn()
         {
             return View();
@@ -41,6 +47,8 @@ namespace BookMate.Controllers
                 else if (temp.AUserName == admin.AUserName && temp.APassword == admin.APassword)
                 {
                     Session["AdminName"] = temp.AUserName;
+                    Session["Username"] = null;
+                    Session["UserId"] = null;
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -52,14 +60,16 @@ namespace BookMate.Controllers
             return View(admin);
         }
 
-        //********************************************************
-
-        // GET: Admins
-        public ActionResult Index()
+        // ------------------- Admin Logout Page -------------------
+        public ActionResult Logout()
         {
-            return View(db.Admin.ToList());
+            Session["AdminName"] = null;
+            return RedirectToAction("Index", "Home");
         }
 
+        //********************************************************
+
+        
         // GET: Admins/Details/5
         public ActionResult Details(string id)
         {

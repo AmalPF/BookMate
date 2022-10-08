@@ -1,32 +1,28 @@
 ﻿@model IEnumerable<BookMate.Models.Purchase>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Orders List";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.PDateTime)
+            Ordered On
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PQuantity)
+            Book Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PAmount)
+            Quantity
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Address.AAddressL1)
+            Price Per Book
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Books.BName)
+            Ordered Address
         </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -35,21 +31,24 @@
             @Html.DisplayFor(modelItem => item.PDateTime)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Books.BName)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.PQuantity)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.PAmount)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Address.AAddressL1)
+            @Html.DisplayFor(modelItem => item.Address.AAddressL1)<br />
+            @Html.DisplayFor(modelItem => item.Address.AAddressL2)<br />
+            @Html.DisplayFor(modelItem => item.Address.ACity),
+            @Html.DisplayFor(modelItem => item.Address.ADistrict),
+            @Html.DisplayFor(modelItem => item.Address.AState)<br />
+            PIN-@Html.DisplayFor(modelItem => item.Address.APIN)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Books.BName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PId })
+            @Html.ActionLink("Details", "Details", new { id = item.PId }) 
         </td>
     </tr>
 }
