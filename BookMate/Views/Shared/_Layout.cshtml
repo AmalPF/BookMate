@@ -7,6 +7,14 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/ourStyle.css" rel="stylesheet" />
+
+    <!-- Font Awesome Icon Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .checked {
+            color: orange;
+        }
+    </style>
 </head>
 <body class="bg">
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -89,6 +97,9 @@
                             <li>
                                 @Html.ActionLink("Sign In", "SignIn", "Users")
                             </li>
+                            <li>
+                                @Html.ActionLink("Sign Up", "SignUp", "Users")
+                            </li>
                         }
                     }
                 </ul>
@@ -100,7 +111,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - BookMate</p>
         </footer>
     </div>
 

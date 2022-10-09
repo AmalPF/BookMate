@@ -11,7 +11,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.LabelFor(model => model.BName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.BName, htmlAttributes: new { @class = "control-label col-md-3" })
 
         </dt>
 
@@ -20,7 +20,7 @@
         </dd>
 
         <dt>
-            @Html.LabelFor(model => model.BAuthor, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.BAuthor, htmlAttributes: new { @class = "control-label col-md-3" })
 
         </dt>
 
@@ -29,7 +29,7 @@
         </dd>
 
         <dt>
-            @Html.LabelFor(model => model.BPublisher, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.BPublisher, htmlAttributes: new { @class = "control-label col-md-3" })
 
         </dt>
 
@@ -38,7 +38,7 @@
         </dd>
 
         <dt>
-            @Html.LabelFor(model => model.BYearOfPublication, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.BYearOfPublication, htmlAttributes: new { @class = "control-label col-md-3" })
 
         </dt>
 
@@ -47,19 +47,16 @@
         </dd>
 
         <dt>
-            @Html.LabelFor(model => model.BImage, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.BImage, htmlAttributes: new { @class = "control-label col-md-3" })
 
         </dt>
 
         <dd>
-            
-            <img src="@Url.Content(Session["image1"].ToString())" height="100" width="100" />
+            <img src="@Url.Content(Session["image1"].ToString())" class="img-thumbnail" style="width:300px;" />
         </dd>
 
         <dt>
-            @Html.LabelFor(model => model.BPrice, htmlAttributes: new { @class = "control-label col-md-2" })
-            
-
+            @Html.LabelFor(model => model.BPrice, htmlAttributes: new { @class = "control-label col-md-3" })
         </dt>
 
         <dd>
@@ -67,7 +64,7 @@
         </dd>
 
         <dt>
-            @Html.LabelFor(model => model.BQuantity, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.BQuantity, htmlAttributes: new { @class = "control-label col-md-3" })
 
         </dt>
 
@@ -76,7 +73,7 @@
         </dd>
 
         <dt>
-            @Html.LabelFor(model => model.BNPurchases, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.BNPurchases, htmlAttributes: new { @class = "control-label col-md-3" })
 
         </dt>
 
@@ -85,7 +82,7 @@
         </dd>
 
         <dt>
-            @Html.LabelFor(model => model.BRating, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.BRating, htmlAttributes: new { @class = "control-label col-md-3" })
 
         </dt>
 
@@ -104,6 +101,6 @@
     </dl>
 </div>
 <p>
-   
+
     @Html.ActionLink("Back to List", "Index")
 </p>

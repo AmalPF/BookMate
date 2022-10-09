@@ -47,5 +47,21 @@ CREATE TRIGGER ItemRemovedCart
 		DELETE FROM Cart WHERE BId = @bid AND UId = @uid;
 		PRINT 'Purchased Item removed from Cart';
     END
+	
+CREATE TRIGGER RemoveRepeatedItem
+    ON Cart
+    FOR INSERT
+    AS
+    BEGIN
+		DECLARE @bid INT;
+		DECLARE @uid INT;
+		DECLARE @cid INT;
+		SELECT @cid = CId FROM inserted;
+		SELECT @bid = BId FROM inserted;
+		SELECT @uid = UId FROM inserted;
+		DELETE FROM Cart WHERE BId = @bid AND UId = @uid AND CId <> @cid;
+		PRINT 'Repeated Item removed from Cart';
+    END
+
 
 --DROP TRIGGER BookRatingUpdation

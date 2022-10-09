@@ -11,7 +11,8 @@ namespace BookMate.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Address
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,15 +23,43 @@ namespace BookMate.Models
     
         public int AId { get; set; }
         public Nullable<int> UId { get; set; }
+
+        [Required]
+        [Display(Name = "Address Line 1")]
         public string AAddressL1 { get; set; }
+
+        [Display(Name = "Address Line 2")]
         public string AAddressL2 { get; set; }
+
+        [Required]
+        [Display(Name = "City")]
         public string ACity { get; set; }
+
+        [Required]
+        [Display(Name = "District")]
         public string ADistrict { get; set; }
+
+        [Required]
+        [Display(Name = "State")]
         public string AState { get; set; }
+
+        [Required]
+        [Display(Name = "Primary Email")]
         public string AEmail1 { get; set; }
+
+        [Required]
+        [Display(Name = "Additional Email")]
         public string AEmail2 { get; set; }
+
+        [Required]
+        [Display(Name = "Primary Phone Number")]
         public string APhone1 { get; set; }
+
+        [Display(Name = "Additional Phone Number")]
         public string APhone2 { get; set; }
+
+        [Required]
+        [Display(Name = "PIN")]
         public string APIN { get; set; }
     
         public virtual Users Users { get; set; }

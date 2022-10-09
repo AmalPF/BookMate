@@ -11,18 +11,25 @@ namespace BookMate.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Purchase
     {
         public int PId { get; set; }
         public Nullable<int> BId { get; set; }
         public Nullable<int> AId { get; set; }
         public System.DateTime PDateTime { get; set; }
+
+        [Required]
+        [Display(Name = "Quantity")]
         public int PQuantity { get; set; }
         public double PAmount { get; set; }
         public Nullable<int> UId { get; set; }
-    
+
+        [Required]
+        [Display(Name = "Address")]
         public virtual Address Address { get; set; }
+
         public virtual Books Books { get; set; }
         public virtual Users Users { get; set; }
     }

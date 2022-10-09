@@ -12,11 +12,16 @@ namespace BookMate.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
 
     public partial class Admin
     {
+        [Required]
         [DisplayName("Admin Name")]
         public string AUserName { get; set; }
+
+        [Required]
+        [Display(Name = "Password")]
         public string APassword { get; set; }
     }
 }

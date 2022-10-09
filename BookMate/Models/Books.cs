@@ -24,25 +24,43 @@ namespace BookMate.Models
             this.Rating = new HashSet<Rating>();
         }
         public int BId { get; set; }
-        [DisplayName("BookName")]
+
+        [Required]
+        [Display(Name = "Book Name")]
         public string BName { get; set; }
-        [DisplayName("Author ")]
+
+        [Required]
+        [Display(Name = "Author Name")]
         public string BAuthor { get; set; }
-        [DisplayName("Publisher")]
+
+        [Required]
+        [Display(Name = "Publisher Name")]
         public string BPublisher { get; set; }
-        [DisplayName("PublishedYear")]
+
+        [Required]
+        [Display(Name = "Year of Publishing")]
         public int BYearOfPublication { get; set; }
-        [DisplayName("Category")]
+
+        [Required]
+        [Display(Name = "Book Category")]
         public string BCategory { get; set; }
-        [DisplayName("Image")]
+
+        [Required]
+        [Display(Name = "Book Image")]
         public string BImage { get; set; }
-        [DisplayName("Price")]
+
+        [Required]
+        [Display(Name = "Book Price")]
         public double BPrice { get; set; }
-        [DisplayName("Quantity")]
+
+        [Required]
+        [Display(Name = "Stock Quantity")]
         public int BQuantity { get; set; }
-        [DisplayName("ItemsSold")]
+
+        [Display(Name = "Number of Purchases")]
         public int BNPurchases { get; set; }
-        [DisplayName("Rating")]
+
+        [Display(Name = "Book Rating")]
         public Nullable<double> BRating { get; set; }
         
 

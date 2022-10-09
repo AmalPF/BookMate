@@ -19,13 +19,6 @@ namespace BookMate.Controllers
 
         //*******************************************************************************************************************************
 
-        // ------------------- Index Page: displays all books -------------------
-        //public ActionResult Index()
-        //{
-        //    var books = db.Books.Include(b => b.Category);
-        //    return View(books.ToList());
-        //}
-
         // ------------------- index page: search for book -------------------
         public ActionResult Index(string SearchBy, string search)
         {
@@ -169,6 +162,7 @@ namespace BookMate.Controllers
         // POST: Books/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [AdminAuth]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "BId,BName,BAuthor,BPublisher,BYearOfPublication,BCategory,BImage,BPrice,BQuantity,BNPurchases,BRating")] Books books)

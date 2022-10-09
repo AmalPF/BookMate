@@ -17,7 +17,6 @@ namespace BookMate.Models
         public int CId { get; set; }
         public Nullable<int> UId { get; set; }
         public Nullable<int> BId { get; set; }
-    
         public virtual Books Books { get; set; }
         public virtual Users Users { get; set; }
     }

@@ -87,6 +87,7 @@ namespace BookMate.Controllers
         [UserAuth]
         public ActionResult Profile()
         {
+            UserProfile userData = new UserProfile();
             if (string.IsNullOrEmpty(Session["UserId"].ToString()))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -96,7 +97,34 @@ namespace BookMate.Controllers
             {
                 return HttpNotFound();
             }
-            return View(user);
+            userData.UserTable = user;
+            userData.AddressTable = getUserAddress(user.UId);
+            return View(userData);
+        }
+
+        private List<Address> getUserAddress(int id)
+        {
+            return db.Address.Where(x => x.UId == id).ToList();
+        }
+
+        // ------------------- Add Address Page -------------------
+        public ActionResult AddAddress()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddAddress([Bind(Include = "")] Address address)
+        {
+            if (ModelState.IsValid)
+            {
+                address.UId = Convert.ToInt32(Session["UserId"]);
+                db.Address.Add(address);
+                db.SaveChanges();
+                return RedirectToAction("Profile");
+            }
+            return View();
         }
 
         //*******************************************************************************************************************************

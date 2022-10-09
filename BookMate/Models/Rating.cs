@@ -11,11 +11,15 @@ namespace BookMate.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Rating
     {
         public int BId { get; set; }
         public int UId { get; set; }
+
+        [Required]
+        [Display(Name = "Book Rating")]
         public double RRating { get; set; }
         public string RComments { get; set; }
     

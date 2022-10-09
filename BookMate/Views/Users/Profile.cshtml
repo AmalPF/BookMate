@@ -1,10 +1,10 @@
-﻿@model BookMate.Models.Users
+﻿@model BookMate.Models.UserProfile
 
 @{
-    ViewBag.Title = "Profile";
+    ViewBag.Title = "My Profile";
 }
 
-<h2>Profile</h2>
+<h2>@ViewBag.Title</h2>
 
 <div>
     <hr />
@@ -13,21 +13,21 @@
             Username
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.UUserName)
+            @Html.DisplayFor(model => model.UserTable.UUserName)
         </dd>
 
         <dt>
             Full Name
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.UFName) @Html.DisplayFor(model => model.ULName)
+            @Html.DisplayFor(model => model.UserTable.UFName) @Html.DisplayFor(model => model.UserTable.ULName)
         </dd>
 
         <dt>
             Date of Birth
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.UDOB)
+            @Html.DisplayFor(model => model.UserTable.UDOB.Date)
         </dd>
 
         <dt>
@@ -35,7 +35,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.UEmail)
+            @Html.DisplayFor(model => model.UserTable.UEmail)
         </dd>
 
         <dt>
@@ -43,12 +43,64 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.UPhone)
+            @Html.DisplayFor(model => model.UserTable.UPhone)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.UId }) |
-    @Html.ActionLink("Back to Home", "Index", "Home")
+    @Html.ActionLink("Edit Profile", "Edit", "Users", new { @class = "btn btn-warning", id = Model.UserTable.UId })
+</p>
+
+<h3>Addresses</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Address
+            </th>
+            <th>
+                Phone Number
+            </th>
+            <th>
+                E-mail
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model.AddressTable)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AAddressL1), @Html.DisplayFor(modelItem => item.AAddressL2)<br />
+                    @Html.DisplayFor(modelItem => item.ACity), @Html.DisplayFor(modelItem => item.ADistrict), @Html.DisplayFor(modelItem => item.AState)<br />
+                    PIN-@Html.DisplayFor(modelItem => item.APIN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.APhone1)<br />
+                    @Html.DisplayFor(modelItem => item.APhone2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AEmail1)<br />
+                    @Html.DisplayFor(modelItem => item.AEmail2)
+                </td>
+                <td>
+                    @*@Html.ActionLink("Edit", "EditAddress", new { @class = "btn btn-primary", id = item.AId })*@
+                    @Html.ActionLink("Delete", "DeleteAddress", new { @class = "btn btn-danger", id = item.AId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>
+    @Html.ActionLink("Add Address", "AddAddress", "Users", new { @class = "btn btn-success" })
+</p>
+<br />
+<br />
+<p>
+    @Html.ActionLink("Back to Home", "Index", "Home", new { @class = "btn btn-info" })
 </p>
