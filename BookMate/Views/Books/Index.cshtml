@@ -1,17 +1,28 @@
 ﻿@model IEnumerable<BookMate.Models.Books>
 
 @{
-    ViewBag.Title = "All Books";
+    ViewBag.Title = "Books";
 }
 
 <h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Index", "Books", FormMethod.Get))
+{
+    <b> Search By </b>
+    @Html.RadioButton("SearchBy", "BookName", true)<text>Book Name</text>
+    @Html.RadioButton("SearchBy", "Category")<text>Category</text>
+    <br />
+    @Html.TextBox("Search")
+    <input type="submit" value="search" />
+}
+<h3>@ViewBag.res</h3>
 
 <div class="row">
     @foreach (var item in Model)
     {
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
-                <img src="~/Uploads/Book Images/logo 1.jpg" class="thumbnail" alt="Image">
+                <img src="@Url.Content(@item.BImage)" class="thumbnail" alt=@item.BName>
                 <div class="caption">
                     <h3>
                         @Html.DisplayFor(modelItem => item.BName)
@@ -22,8 +33,9 @@
                     <h3>
                         &#8377; @Html.DisplayFor(modelItem => item.BPrice)
                     </h3>
+
                     <p>
-                        @Html.ActionLink("Details", "Details", new { id = item.BId }, new { @class = "btn btn-info" } )
+                        @Html.ActionLink("Details", "Details", new { id = item.BId }, new { @class = "btn btn-info" })
                         @Html.ActionLink("Add To Cart", "AddToCart", new { id = item.BId }, new { @class = "btn btn-success" })
                     </p>
                 </div>

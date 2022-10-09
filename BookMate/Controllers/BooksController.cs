@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BookMate.Filters;
 using BookMate.Models;
+using static System.Net.WebRequestMethods;
 
 namespace BookMate.Controllers
 {
@@ -17,18 +19,53 @@ namespace BookMate.Controllers
 
         //*******************************************************************************************************************************
 
-        public ActionResult Index()
+        // ------------------- Index Page: displays all books -------------------
+        //public ActionResult Index()
+        //{
+        //    var books = db.Books.Include(b => b.Category);
+        //    return View(books.ToList());
+        //}
+
+        // ------------------- index page: search for book -------------------
+        public ActionResult Index(string SearchBy, string search)
         {
-            var books = db.Books.Include(b => b.Category);
-            return View(books.ToList());
+            ViewBag.res = "";
+            if (SearchBy == "BookName")
+            {
+                var books = db.Books.Where(model => model.BName == search).ToList();
+                if (books.Count == 0)
+                {
+                    ViewBag.res = "No Book Found";
+                }
+                return View(books);
+            }
+            else if (SearchBy == "Category")
+            {
+                var books = db.Books.Where(model => model.BCategory == search).ToList();
+                if (books.Count == 0)
+
+
+
+                {
+                    ViewBag.res = "No Book Found on this category";
+                }
+                return View(books);
+            }
+            else
+            {
+                var books = db.Books.Include(b => b.Category);
+                return View(books.ToList());
+            }
         }
 
+        // ------------------- BookList Page: displays all books to Admin -------------------
         public ActionResult BookList()
         {
             var books = db.Books.Include(b => b.Category);
             return View(books.ToList());
         }
 
+        // ------------------- AddToCart Page -------------------
         [UserAuth]
         public ActionResult AddToCart(int? id)
         {
@@ -45,6 +82,51 @@ namespace BookMate.Controllers
             //Response.Write("<script> alert('" + book.BName + " Added to Cart')</script>");
             return RedirectToAction("Index", "Carts");
         }
+
+        // ------------------- Add Page -------------------
+        [AdminAuth]
+        public ActionResult Add()
+        {
+            ViewBag.BCategory = new SelectList(db.Category, "CCategoryName", "CCategoryName");
+            return View();
+        }
+
+        // POST: Books/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Add([Bind(Include = "BId,BName,BAuthor,BPublisher,BYearOfPublication,BCategory,BImage,BPrice,BQuantity")] Books books, HttpPostedFileBase BImage)
+        {
+            if (ModelState.IsValid)
+            {
+                if (BImage != null)
+                {
+                    int newId = getLastBookId() + 1;
+                    string newFileName = newId + Path.GetExtension(BImage.FileName);
+                    string path = Path.Combine(Server.MapPath("~/Uploads/Book Images"), newFileName);
+                    books.BImage = "~/Uploads/Book Images/" + newFileName;
+                    BImage.SaveAs(path);
+                    db.Books.Add(books);
+                    db.SaveChanges();
+                    return RedirectToAction("BookList");
+                }
+            }
+
+            ViewBag.BCategory = new SelectList(db.Category, "CCategoryName", "CCategoryName", books.BCategory);
+            return View(books);
+        }
+
+
+
+        // ------------------- getting the last id from books -------------------
+        private int getLastBookId()
+        {
+            int id = db.Books.Max(b => b.BId);
+            return id;
+        }
+
+
 
         //*******************************************************************************************************************************
 
@@ -64,31 +146,6 @@ namespace BookMate.Controllers
             return View(books);
         }
 
-        // GET: Books/Create
-        [AdminAuth]
-        public ActionResult Create()
-        {
-            ViewBag.BCategory = new SelectList(db.Category, "CCategoryName", "CCategoryName");
-            return View();
-        }
-
-        // POST: Books/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "BId,BName,BAuthor,BPublisher,BYearOfPublication,BCategory,BImage,BPrice,BQuantity,BNPurchases,BRating")] Books books)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Books.Add(books);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.BCategory = new SelectList(db.Category, "CCategoryName", "CCategoryName", books.BCategory);
-            return View(books);
-        }
 
         // GET: Books/Edit/5
         public ActionResult Edit(int? id)
@@ -146,7 +203,7 @@ namespace BookMate.Controllers
             Books books = db.Books.Find(id);
             db.Books.Remove(books);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("BookList");
         }
 
         protected override void Dispose(bool disposing)

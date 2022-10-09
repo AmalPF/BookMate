@@ -63,7 +63,8 @@ namespace BookMate.Controllers
                 purchase.PDateTime = DateTime.Now; 
                 db.Purchase.Add(purchase);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                
+                return RedirectToAction("AllPurchases");
             }
             ViewBag.BookName = purchase.Books.BName;
             ViewBag.Price = purchase.Books.BPrice;

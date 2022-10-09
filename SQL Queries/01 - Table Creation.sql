@@ -68,8 +68,7 @@ CREATE TABLE Purchase (
 	AId INT FOREIGN KEY REFERENCES Address(AId),
 	PDateTime DATETIME NOT NULL,
 	PQuantity INT NOT NULL DEFAULT 1,
-	PAmount FLOAT NOT NULL,
-	FOREIGN KEY (PK_Rating) REFERENCES Rating(PK_Rating)
+	PAmount FLOAT NOT NULL
 )
 
 create table Cart (

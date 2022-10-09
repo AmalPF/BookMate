@@ -27,13 +27,12 @@
                         {
                             <li>@Html.ActionLink("View Users", "Index", "Users")</li>
                             <li>@Html.ActionLink("View Books", "BookList", "Books")</li>
-                            <li>@Html.ActionLink("Add Book", "Create", "Books")</li>
+                            <li>@Html.ActionLink("Add Book", "Add", "Books")</li>
                             <li>@Html.ActionLink("View Orders ", "AllPurchases", "Purchases")</li>
                         }
                         else if (!string.IsNullOrEmpty(Convert.ToString(Session["Username"])))
                         {
                             <li>@Html.ActionLink("Books", "Index", "Books")</li>
-                            <li>@Html.ActionLink("Categories", "Index", "Home")</li>
                             <li>@Html.ActionLink("About", "About", "Home")</li>
                             <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                         }
