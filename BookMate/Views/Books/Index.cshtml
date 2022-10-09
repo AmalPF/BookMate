@@ -20,7 +20,7 @@
 <div class="row">
     @foreach (var item in Model)
     {
-        <div class="col-sm-6 col-md-4">
+        <div class="col-sm-6 col-md-3">
             <div class="thumbnail">
                 <img src="@Url.Content(@item.BImage)" class="thumbnail" alt=@item.BName>
                 <div class="caption">
@@ -30,13 +30,22 @@
                     <p>
                         @Html.DisplayFor(modelItem => item.BAuthor)
                     </p>
+                    <p>
+                        @Html.DisplayFor(modelItem => item.BCategory)
+                    </p>
                     <h3>
                         &#8377; @Html.DisplayFor(modelItem => item.BPrice)
                     </h3>
-
-                    <p>
-                        @Html.ActionLink("Details", "Details", new { id = item.BId }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("Details", "Details", new { id = item.BId }, new { @class = "btn btn-info" })
+                    @if (item.BQuantity > 0)
+                    {
                         @Html.ActionLink("Add To Cart", "AddToCart", new { id = item.BId }, new { @class = "btn btn-success" })
+                    }
+                    else
+                    {
+                        <button type="button" class="btn btn-secondary" disabled>Out of Stock</button>
+                    }
+                    <p>
                     </p>
                 </div>
             </div>

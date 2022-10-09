@@ -146,6 +146,7 @@ namespace BookMate.Controllers
         }
 
         // GET: Users/Edit/5
+        [UserAuth]
         public ActionResult Edit(int? id)
         {
             if (id == null)

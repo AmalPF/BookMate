@@ -11,7 +11,8 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.BName)
+            @Html.LabelFor(model => model.BName, htmlAttributes: new { @class = "control-label col-md-2" })
+
         </dt>
 
         <dd>
@@ -19,7 +20,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.BAuthor)
+            @Html.LabelFor(model => model.BAuthor, htmlAttributes: new { @class = "control-label col-md-2" })
+
         </dt>
 
         <dd>
@@ -27,7 +29,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.BPublisher)
+            @Html.LabelFor(model => model.BPublisher, htmlAttributes: new { @class = "control-label col-md-2" })
+
         </dt>
 
         <dd>
@@ -35,7 +38,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.BYearOfPublication)
+            @Html.LabelFor(model => model.BYearOfPublication, htmlAttributes: new { @class = "control-label col-md-2" })
+
         </dt>
 
         <dd>
@@ -43,15 +47,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.BImage)
+            @Html.LabelFor(model => model.BImage, htmlAttributes: new { @class = "control-label col-md-2" })
+
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.BImage)
+            
+            <img src="@Url.Content(Session["image1"].ToString())" height="100" width="100" />
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.BPrice)
+            @Html.LabelFor(model => model.BPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            
+
         </dt>
 
         <dd>
@@ -59,7 +67,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.BQuantity)
+            @Html.LabelFor(model => model.BQuantity, htmlAttributes: new { @class = "control-label col-md-2" })
+
         </dt>
 
         <dd>
@@ -67,7 +76,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.BNPurchases)
+            @Html.LabelFor(model => model.BNPurchases, htmlAttributes: new { @class = "control-label col-md-2" })
+
         </dt>
 
         <dd>
@@ -75,7 +85,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.BRating)
+            @Html.LabelFor(model => model.BRating, htmlAttributes: new { @class = "control-label col-md-2" })
+
         </dt>
 
         <dd>
@@ -93,6 +104,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.BId }) |
+   
     @Html.ActionLink("Back to List", "Index")
 </p>

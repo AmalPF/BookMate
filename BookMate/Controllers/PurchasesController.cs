@@ -48,6 +48,7 @@ namespace BookMate.Controllers
                 return HttpNotFound();
             }
             Purchase item = new Purchase { UId = cartItem.UId, BId = cartItem.BId, PAmount = cartItem.Books.BPrice, PQuantity = 1 };
+            ViewBag.Quantity = cartItem.Books.BQuantity;
             ViewBag.BookName = cartItem.Books.BName;
             ViewBag.Price = cartItem.Books.BPrice;
             ViewBag.AId = new SelectList(db.Address.Where(x => x.UId == cartItem.UId), "AId", "AAddressL1");
@@ -68,6 +69,7 @@ namespace BookMate.Controllers
             }
             ViewBag.BookName = purchase.Books.BName;
             ViewBag.Price = purchase.Books.BPrice;
+            ViewBag.Quantity = purchase.Books.BQuantity;
             ViewBag.AId = new SelectList(db.Address.Where(x => x.UId == purchase.UId), "AId", "AAddressL1");
             return View(purchase);
         }

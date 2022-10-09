@@ -6,8 +6,9 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/ourStyle.css" rel="stylesheet" />
 </head>
-<body>
+<body class="bg">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid p-3">
             <div class="navbar-header">
@@ -39,7 +40,6 @@
                         else
                         {
                             <li>@Html.ActionLink("Books", "Index", "Books")</li>
-                            <li>@Html.ActionLink("Categories", "Index", "Home")</li>
                             <li>@Html.ActionLink("About", "About", "Home")</li>
                         }
                     }
@@ -76,7 +76,7 @@
                                         @Html.ActionLink("Cart", "Index", "Carts")
                                     </li>
                                     <li>
-                                        @Html.ActionLink("My Orders", "Index", "Purchases")
+                                        @Html.ActionLink("My Orders", "AllPurchases", "Purchases")
                                     </li>
                                     <li>
                                         @Html.ActionLink("Logout", "Logout", "Users")

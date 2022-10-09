@@ -11,9 +11,11 @@ namespace BookMate.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class Admin
     {
+        [DisplayName("Admin Name")]
         public string AUserName { get; set; }
         public string APassword { get; set; }
     }

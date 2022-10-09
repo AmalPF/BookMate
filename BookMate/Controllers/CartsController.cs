@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using BookMate.Filters;
 using BookMate.Models;
 
 namespace BookMate.Controllers
@@ -24,7 +25,7 @@ namespace BookMate.Controllers
             CartList.AddRange(db.Cart.Where(x => x.UId == user.UId).ToList());
             return View(CartList);
         }
-
+        [UserAuth]
         public ActionResult BuyNow(int? id)
         {
             return RedirectToAction("ConfirmOrder", "Purchases", new { cid=id });
@@ -75,42 +76,7 @@ namespace BookMate.Controllers
             ViewBag.UId = new SelectList(db.Users, "UId", "UUserName", cart.UId);
             return View(cart);
         }
-
-        // GET: Carts/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Cart cart = db.Cart.Find(id);
-            if (cart == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.BId = new SelectList(db.Books, "BId", "BName", cart.BId);
-            ViewBag.UId = new SelectList(db.Users, "UId", "UUserName", cart.UId);
-            return View(cart);
-        }
-
-        // POST: Carts/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CId,UId,BId")] Cart cart)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(cart).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.BId = new SelectList(db.Books, "BId", "BName", cart.BId);
-            ViewBag.UId = new SelectList(db.Users, "UId", "UUserName", cart.UId);
-            return View(cart);
-        }
-
+        
         // GET: Carts/Delete/5
         public ActionResult Delete(int? id)
         {

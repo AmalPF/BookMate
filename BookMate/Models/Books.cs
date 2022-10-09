@@ -11,6 +11,7 @@ namespace BookMate.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
     public partial class Books
@@ -22,20 +23,31 @@ namespace BookMate.Models
             this.Purchase = new HashSet<Purchase>();
             this.Rating = new HashSet<Rating>();
         }
-    
         public int BId { get; set; }
+        [DisplayName("BookName")]
         public string BName { get; set; }
+        [DisplayName("Author ")]
         public string BAuthor { get; set; }
+        [DisplayName("Publisher")]
         public string BPublisher { get; set; }
+        [DisplayName("PublishedYear")]
         public int BYearOfPublication { get; set; }
+        [DisplayName("Category")]
         public string BCategory { get; set; }
+        [DisplayName("Image")]
         public string BImage { get; set; }
+        [DisplayName("Price")]
         public double BPrice { get; set; }
+        [DisplayName("Quantity")]
         public int BQuantity { get; set; }
+        [DisplayName("ItemsSold")]
         public int BNPurchases { get; set; }
+        [DisplayName("Rating")]
         public Nullable<double> BRating { get; set; }
-    
+        
+
         public virtual Category Category { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cart> Cart { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

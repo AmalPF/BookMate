@@ -58,7 +58,7 @@
             @Html.DisplayFor(modelItem => item.Category.CCategoryName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.BImage)
+            <img src="@Url.Content(@item.BImage)" class="thumbnail" alt=@item.BName width="200" height="200">
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.BPrice)

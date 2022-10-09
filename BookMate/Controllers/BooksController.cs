@@ -59,6 +59,7 @@ namespace BookMate.Controllers
         }
 
         // ------------------- BookList Page: displays all books to Admin -------------------
+        [AdminAuth]
         public ActionResult BookList()
         {
             var books = db.Books.Include(b => b.Category);
@@ -143,11 +144,13 @@ namespace BookMate.Controllers
             {
                 return HttpNotFound();
             }
+            Session["image1"] = books.BImage.ToString();
             return View(books);
         }
 
 
         // GET: Books/Edit/5
+        [AdminAuth]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -181,6 +184,7 @@ namespace BookMate.Controllers
         }
 
         // GET: Books/Delete/5
+        [AdminAuth]
         public ActionResult Delete(int? id)
         {
             if (id == null)

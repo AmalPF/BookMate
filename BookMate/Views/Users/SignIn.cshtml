@@ -1,52 +1,69 @@
 ﻿@model BookMate.Models.Users
 
+
+
 @{
     ViewBag.Title = "SignIn";
 }
 
-<h2>SignIn</h2>
 
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>User</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            <label class="control-label col-md-2 font-weight-bold">
-                Username
-            </label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UUserName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UUserName, "", new { @class = "text-danger" })
+<body class="bg" />
+    <h2 style="color:white;">SignIn</h2>
+
+
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+
+
+        <div class="form-horizontal">
+
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label style="color:white;" class="control-label col-md-2 font-weight-bold">
+                    Username
+                </label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.UUserName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.UUserName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <label style="color:white;" class="control-label col-md-2 font-weight-bold">
+                    Password
+                </label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.UPassword, new { htmlAttributes = new { @class = "form-control"} })
+                    @Html.ValidationMessageFor(model => model.UPassword, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Sign In" class="btn btn-success" />
+                </div>
             </div>
         </div>
+    }
 
-        <div class="form-group">
-            <label class="control-label col-md-2 font-weight-bold">
-                Password
-            </label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UPassword, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UPassword, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Sign In" class="btn btn-success" />
-            </div>
-        </div>
+
+    <div>
+        @Html.ActionLink("Click here to Sign Up", "SignUp", "Users")
     </div>
-}
 
-<div>
-    @Html.ActionLink("Click here to Sign Up", "SignUp", "Users")
-</div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+
+
+</body>

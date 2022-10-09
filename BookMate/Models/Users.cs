@@ -11,7 +11,8 @@ namespace BookMate.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Users
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -25,6 +26,7 @@ namespace BookMate.Models
     
         public int UId { get; set; }
         public string UUserName { get; set; }
+        [DataType(DataType.Password)]
         public string UPassword { get; set; }
         public string UFName { get; set; }
         public string ULName { get; set; }
