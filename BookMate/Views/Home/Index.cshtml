@@ -29,7 +29,7 @@
     @Html.RadioButton("SearchBy", "BookName", true)<text>Book Name</text>
     @Html.RadioButton("SearchBy", "Category")<text>Category</text>
     <br />
-    @Html.TextBox("Search", new {@class="form-control"})
+    @Html.TextBox("Search", "", new {@class="form-control"})
     <input type="submit" value="search" class="btn btn-primary" />
 }
 <h3>@ViewBag.res</h3>

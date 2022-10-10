@@ -35,24 +35,24 @@ namespace BookMate.Models
         [Display(Name = "Password")]
         public string UPassword { get; set; }
 
-        [Required]
-        [Display(Name = "First Name")]
+        //[Required]
+        //[Display(Name = "First Name")]
         public string UFName { get; set; }
 
-        [Required]
-        [Display(Name = "Last Name")]
+        //[Required]
+        //[Display(Name = "Last Name")]
         public string ULName { get; set; }
 
-        [Required]
-        [Display(Name = "Date of Birth")]
+        //[Required]
+        //[Display(Name = "Date of Birth")]
         public System.DateTime UDOB { get; set; }
 
-        [Required]
-        [Display(Name = "E-mail")]
+        //[Required]
+        //[Display(Name = "E-mail")]
         public string UEmail { get; set; }
 
-        [Required]
-        [Display(Name = "Phone")]
+        //[Required]
+        //[Display(Name = "Phone")]
         public string UPhone { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

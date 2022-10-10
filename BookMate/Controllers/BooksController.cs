@@ -165,10 +165,15 @@ namespace BookMate.Controllers
         [AdminAuth]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "BId,BName,BAuthor,BPublisher,BYearOfPublication,BCategory,BImage,BPrice,BQuantity,BNPurchases,BRating")] Books books)
+        public ActionResult Edit([Bind(Include = "BId,BName,BAuthor,BPublisher,BYearOfPublication,BCategory,BImage,BPrice,BQuantity,BNPurchases,BRating")] Books books, HttpPostedFileBase BImage)
         {
             if (ModelState.IsValid)
             {
+                int newId = books.BId;
+                string newFileName = newId + Path.GetExtension(BImage.FileName);
+                string path = Path.Combine(Server.MapPath("~/Uploads/Book Images"), newFileName);
+                books.BImage = "~/Uploads/Book Images/" + newFileName;
+                BImage.SaveAs(path);
                 db.Entry(books).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
