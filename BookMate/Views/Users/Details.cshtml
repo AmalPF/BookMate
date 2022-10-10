@@ -69,6 +69,11 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.UId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @{
+        if (string.IsNullOrEmpty(Session["AdminName"].ToString()))
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = Model.UId }) 
+        }
+    }
+    @Html.ActionLink("Back to Home", "Index", "Home")
 </p>

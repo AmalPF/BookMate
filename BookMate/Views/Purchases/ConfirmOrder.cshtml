@@ -40,7 +40,10 @@
     </div>
 
     <div class="form-group">
-        @ViewBag.Price
+        <label class="control-label col-md-2">Amount</label>
+        <div class="col-md-10">
+            <input value="@ViewBag.Price" class="form-control" readonly />
+        </div>
     </div>
 
     <div class="form-group">

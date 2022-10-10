@@ -20,19 +20,19 @@
 <br />
 <br />
 <br />
-<br />
-<br />
 
-@using (Html.BeginForm("Index", "Books", FormMethod.Get))
-{
-    <b> Search By </b>
-    @Html.RadioButton("SearchBy", "BookName", true)<text>Book Name</text>
-    @Html.RadioButton("SearchBy", "Category")<text>Category</text>
-    <br />
-    @Html.TextBox("Search", "", new {@class="form-control"})
-    <input type="submit" value="search" class="btn btn-primary" />
-}
-<h3>@ViewBag.res</h3>
+<div class="container">
+    @using (Html.BeginForm("Index", "Books", FormMethod.Get))
+    {
+        <b> Search By </b>
+        @Html.RadioButton("SearchBy", "BookName", true)<text>Book Name</text>
+        @Html.RadioButton("SearchBy", "Category")<text>Category</text>
+        <br />
+        @Html.TextBox("Search", "", new { @class = "form-control" })
+        <input type="submit" value="search" class="btn btn-primary" />
+    }
+    <h3>@ViewBag.res</h3>
+</div>
 <br />
 <br />
 

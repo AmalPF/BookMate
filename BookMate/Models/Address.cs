@@ -45,17 +45,21 @@ namespace BookMate.Models
 
         [Required]
         [Display(Name = "Primary Email")]
+        [DataType(DataType.EmailAddress)]
         public string AEmail1 { get; set; }
 
         [Required]
         [Display(Name = "Additional Email")]
+        [DataType(DataType.EmailAddress)]
         public string AEmail2 { get; set; }
 
         [Required]
         [Display(Name = "Primary Phone Number")]
+        [DataType(DataType.PhoneNumber)]
         public string APhone1 { get; set; }
 
         [Display(Name = "Additional Phone Number")]
+        [DataType(DataType.PhoneNumber)]
         public string APhone2 { get; set; }
 
         [Required]

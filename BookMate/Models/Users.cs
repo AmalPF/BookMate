@@ -45,14 +45,17 @@ namespace BookMate.Models
 
         //[Required]
         //[Display(Name = "Date of Birth")]
+        [DataType(DataType.Date)]
         public System.DateTime UDOB { get; set; }
 
         //[Required]
         //[Display(Name = "E-mail")]
+        [DataType(DataType.EmailAddress)]
         public string UEmail { get; set; }
 
         //[Required]
         //[Display(Name = "Phone")]
+        [DataType(DataType.PhoneNumber)]
         public string UPhone { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

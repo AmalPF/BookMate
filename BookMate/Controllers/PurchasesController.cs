@@ -30,12 +30,14 @@ namespace BookMate.Controllers
             return View(purchaseList);
         }
 
+        [UserAuth]
         public ActionResult AddRating(int? id)
         {
             Session["BookId"] = id;
             return RedirectToAction("AddRating", "Ratings");
         }
 
+        [UserAuth]
         public ActionResult ConfirmOrder(int? cid)
         {
             if (cid == null)
@@ -55,6 +57,7 @@ namespace BookMate.Controllers
             return View(item);
         }
 
+        [UserAuth]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult ConfirmOrder([Bind(Include = "PId,UId,BId,AId,PDateTime,PQuantity,PAmount")] Purchase purchase)
@@ -67,16 +70,13 @@ namespace BookMate.Controllers
                 
                 return RedirectToAction("AllPurchases");
             }
-            ViewBag.BookName = purchase.Books.BName;
-            ViewBag.Price = purchase.Books.BPrice;
-            ViewBag.Quantity = purchase.Books.BQuantity;
-            ViewBag.AId = new SelectList(db.Address.Where(x => x.UId == purchase.UId), "AId", "AAddressL1");
             return View(purchase);
         }
 
         //****************************************************************************************
 
         // GET: Purchases
+        [UserAuth]
         public ActionResult AllPurchases()
         {
             var purchase = db.Purchase.Include(p => p.Address).Include(p => p.Books);
@@ -84,6 +84,7 @@ namespace BookMate.Controllers
         }
 
         // GET: Purchases/Details/5
+        [UserAuth]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -99,6 +100,7 @@ namespace BookMate.Controllers
         }
 
         // GET: Purchases/Create
+        [UserAuth]
         public ActionResult Create()
         {
             ViewBag.AId = new SelectList(db.Address, "AId", "AAddressL1");
@@ -109,6 +111,7 @@ namespace BookMate.Controllers
         // POST: Purchases/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [UserAuth]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "PId,BId,AId,PDateTime,PQuantity,PAmount")] Purchase purchase)

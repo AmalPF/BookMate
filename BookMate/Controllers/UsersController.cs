@@ -75,7 +75,7 @@ namespace BookMate.Controllers
             {
                 db.Users.Add(users);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
 
             return View(users);
@@ -127,9 +127,36 @@ namespace BookMate.Controllers
             return View();
         }
 
+        // ------------------- Delete Address Page -------------------
+        public ActionResult DeleteAddress(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Address address = db.Address.Find(id);
+            if (address == null)
+            {
+                return HttpNotFound();
+            }
+            return View(address);
+        }
+
+        // POST: Users/Delete/5
+        [HttpPost, ActionName("DeleteAddress")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteAddressConfirmed(int id)
+        {
+            Address address = db.Address.Find(id);
+            db.Address.Remove(address);
+            db.SaveChanges();
+            return RedirectToAction("Profile");
+        }
+
         //*******************************************************************************************************************************
 
         // GET: Users
+        [AdminAuth]
         public ActionResult Index()
         {
             return View(db.Users.ToList());
@@ -151,6 +178,7 @@ namespace BookMate.Controllers
         }
 
         // GET: Users/Create
+        [UserAuth]
         public ActionResult Create()
         {
             return View();
@@ -159,6 +187,7 @@ namespace BookMate.Controllers
         // POST: Users/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [UserAuth]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "UId,UUserName,UPassword,UFName,ULName,UDOB,UEmail,UPhone")] Users users)
@@ -192,6 +221,7 @@ namespace BookMate.Controllers
         // POST: Users/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [UserAuth]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "UId,UUserName,UPassword,UFName,ULName,UDOB,UEmail,UPhone")] Users users)
@@ -200,7 +230,7 @@ namespace BookMate.Controllers
             {
                 db.Entry(users).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Profile");
             }
             return View(users);
         }

@@ -53,6 +53,7 @@ insert into Purchase values(1,2,GETDATE(),2,234.5,1)
 insert into Purchase values(2,1,GETDATE(),3,334.5,1)
 insert into Purchase values(3,2,GETDATE(),5,134.5,1)
 SELECT * FROM Purchase
+--TRUNCATE TABLE Purchase
 
 -- Cart Table
 insert into cart values(1,1)
@@ -61,3 +62,4 @@ insert into cart values(2,3)
 insert into cart values(2,1)
 insert into cart values(3,2)
 SELECT * FROM Cart
+--TRUNCATE TABLE Cart

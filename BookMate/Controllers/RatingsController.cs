@@ -151,7 +151,7 @@ namespace BookMate.Controllers
             Rating rating = db.Rating.Find(id);
             db.Rating.Remove(rating);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Purchase");
         }
 
         protected override void Dispose(bool disposing)
