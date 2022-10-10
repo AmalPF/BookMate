@@ -20,13 +20,13 @@ namespace BookMate.Models
         public Nullable<int> AId { get; set; }
         public System.DateTime PDateTime { get; set; }
 
-        [Required]
+        //[Required]
         [Display(Name = "Quantity")]
         public int PQuantity { get; set; }
         public double PAmount { get; set; }
         public Nullable<int> UId { get; set; }
 
-        [Required]
+        //[Required]
         [Display(Name = "Address")]
         public virtual Address Address { get; set; }
 
